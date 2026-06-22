@@ -1,81 +1,164 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Mini-Game auf Base</title>
-  <script src="https://cdn.jsdelivr.net/npm/ethers@6.9.0/dist/ethers.min.js"></script>
-
-  <!-- Farcaster Frame Meta-Tags -->
-  <meta property="fc:frame" content="vNext">
-  <meta property="fc:frame:image" content="https://i.imgur.com/3X9Yk5J.png">
-  <meta property="fc:frame:button:1" content="Play Mini-Game">
-  <meta property="fc:frame:button:1:action" content="open">
-  <meta property="fc:frame:button:1:target" content="https://dein-host.mein-mini-game">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Great 2013 Collection</title>
   <style>
-    body { font-family: Arial; text-align: center; margin: 40px; }
-    #teddy { width: 100px; cursor: pointer; position: absolute; transition: top 0.2s, left 0.2s; }
-    #score { font-size: 24px; margin-top: 20px; }
-    #connectBtn { padding: 10px 20px; font-size: 18px; margin-bottom: 20px; }
+    body {
+      background: #f4f4f4;
+      color: #000000;
+      font-family: "Tahoma", "Arial", sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.5;
+    }
+    header {
+      background: #0a2b5e;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 5px solid #ffcc00;
+    }
+    h1 {
+      margin: 0;
+      font-size: 2.8rem;
+      text-shadow: 3px 3px 0 #000;
+    }
+    .subtitle {
+      font-size: 1.4rem;
+      margin: 8px 0 0 0;
+      color: #ffcc00;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 30px auto;
+      background: white;
+      border: 2px solid #0a2b5e;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+    .forum-header {
+      background: #e0e0e0;
+      padding: 15px;
+      border-bottom: 2px solid #0a2b5e;
+      font-weight: bold;
+    }
+    .intro {
+      padding: 25px;
+      background: #f9f9f9;
+      border-bottom: 1px solid #ccc;
+      font-size: 1.15rem;
+    }
+    .original-link {
+      text-align: center;
+      padding: 15px;
+      background: #fff3d9;
+      font-size: 1.2rem;
+    }
+    h2 {
+      background: #0a2b5e;
+      color: white;
+      padding: 12px 20px;
+      margin: 0;
+      font-size: 1.5rem;
+    }
+    .coin-grid {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 15px;
+    }
+    .coin {
+      background: #ffffff;
+      border: 2px solid #0a2b5e;
+      padding: 18px;
+      transition: all 0.2s;
+    }
+    .coin:hover {
+      background: #fff9e6;
+      border-color: #ffcc00;
+    }
+    .ticker {
+      color: #006600;
+      font-weight: bold;
+      font-size: 1.3rem;
+    }
+    footer {
+      background: #0a2b5e;
+      color: #ffcc00;
+      text-align: center;
+      padding: 25px;
+      font-size: 1.1rem;
+    }
+    .old-post {
+      background: #e8f0ff;
+      border-left: 6px solid #0a2b5e;
+      padding: 20px;
+      margin: 20px;
+      font-style: italic;
+    }
   </style>
 </head>
 <body>
-  <h1>🐻 Mini-Game auf Base</h1>
-  <button id="connectBtn">Wallet verbinden</button>
-  <p id="status">Nicht verbunden</p>
-  <p id="score">Score: 0</p>
-  <img id="teddy" src="https://i.imgur.com/3X9Yk5J.png" style="top:200px; left:200px;">
 
-  <script>
-    const CONTRACT_ADDRESS = "0xf08c410c3bd38507ce38afcc36d1f1dbb3224a9f"; // Dein Contract
-    const ABI = [
-      {"inputs":[],"name":"incrementScore","outputs":[],"stateMutability":"nonpayable","type":"function"},
-      {"inputs":[{"internalType":"address","name":"player","type":"address"}],"name":"getScore","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}
-    ];
+  <header>
+    <h1>The Great 2013 Collection</h1>
+    <p class="subtitle">A Nostalgic Tribute to the Golden Era of Shitcoins • May 2013</p>
+  </header>
 
-    let provider, signer, contract;
-    const connectBtn = document.getElementById("connectBtn");
-    const status = document.getElementById("status");
-    const scoreP = document.getElementById("score");
-    const teddy = document.getElementById("teddy");
+  <div class="container">
 
-    async function connectWallet() {
-      if(!window.ethereum) return alert("Bitte MetaMask installieren!");
-      provider = new ethers.BrowserProvider(window.ethereum);
-      await provider.send("eth_requestAccounts", []);
-      signer = await provider.getSigner();
-      contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, signer);
-      const addr = await signer.getAddress();
-      status.innerText = "Verbunden: " + addr;
-      connectBtn.disabled = true;
-      updateScore();
-    }
+    <div class="forum-header">
+      Bitcoin Forum &gt; Alternate Cryptocurrencies &gt; The Great 2013 Collection
+    </div>
 
-    async function updateScore() {
-      const addr = await signer.getAddress();
-      const value = await contract.getScore(addr);
-      scoreP.innerText = "Score: " + value;
-    }
+    <div class="intro">
+      <p>Back in May 2013, user <strong>NullOp</strong> created pure chaos on BitcoinTalk with one legendary post.</p>
+      <p>He invented dozens of the most ridiculous, funny and useless altcoins ever conceived. This is the complete digital archive and homage to that glorious moment in crypto history.</p>
+    </div>
 
-    async function hitTeddy() {
-      const tx = await contract.incrementScore();
-      scoreP.innerText = "Tx gesendet: " + tx.hash;
-      await tx.wait();
-      updateScore();
-      moveTeddy();
-    }
+    <div class="original-link">
+      <strong>Original Legendary Thread:</strong><br>
+      <a href="https://bitcointalk.org/index.php?topic=205886.0" target="_blank" style="color:#0066cc;">
+        https://bitcointalk.org/index.php?topic=205886.0
+      </a>
+    </div>
 
-    function moveTeddy() {
-      const maxX = window.innerWidth - 100;
-      const maxY = window.innerHeight - 100;
-      const x = Math.floor(Math.random() * maxX);
-      const y = Math.floor(Math.random() * maxY);
-      teddy.style.left = x + "px";
-      teddy.style.top = y + "px";
-    }
+    <h2>THE COMPLETE COLLECTION</h2>
 
-    connectBtn.onclick = connectWallet;
-    teddy.onclick = hitTeddy;
-  </script>
+    <div class="coin-grid">
+      <div class="coin"><strong>Zimbabwe Dollar Coin</strong> <span class="ticker">(ZDC)</span><br><small>21 million units with moving decimal points</small></div>
+      <div class="coin"><strong>Ponzi Coin</strong> <span class="ticker">(PZC)</span><br><small>Early miners get paid by later ones</small></div>
+      <div class="coin"><strong>North Korea Coin</strong> <span class="ticker">(NKC)</span><br><small>Best coin in the world. Cannibalism optional</small></div>
+      <div class="coin"><strong>Kentucky Fried Chicken Coin</strong> <span class="ticker">(KFC)</span><br><small>Physical blockchain. No middle eating</small></div>
+      <div class="coin"><strong>Dilute Bitcoin Coin</strong> <span class="ticker">(DBC)</span><br><small>Dilutes all other altcoins by existing</small></div>
+      <div class="coin"><strong>I Can't Wait Coin</strong> <span class="ticker">(ICWC)</span><br><small>Days and weeks are fine</small></div>
+      <div class="coin"><strong>Pump and Dump Coin</strong> <span class="ticker">(PDC)</span><br><small>Self explanatory</small></div>
+      <div class="coin"><strong>One Coin</strong> <span class="ticker">(OC)</span><br><small>Only one available. Selling for 100 BTC</small></div>
+      <div class="coin"><strong>Madoff Coin</strong> <span class="ticker">(MDC)</span><br><small>Guaranteed returns… until they aren't</small></div>
+      <div class="coin"><strong>Pound Define Coin</strong> <span class="ticker">(PDC)</span><br><small>One line of code = new altcoin empire</small></div>
+      <div class="coin"><strong>Pyramid Scheme Coin</strong> <span class="ticker">(PSC)</span><br><small>Hashrate hidden in Egyptian pyramids</small></div>
+      <div class="coin"><strong>Easter Egg Coin</strong> <span class="ticker">(EEG)</span><br><small>Developer disappeared after 20.5 million</small></div>
+      <div class="coin"><strong>Regulated Coin</strong> <span class="ticker">(RC)</span><br><small>IRS approved • Terrorist flag optional</small></div>
+      <div class="coin"><strong>I Trust My Life Savings To The Core Bitcoin Devs Coin</strong> <span class="ticker">(ITMLSTTBC)</span><br><small>Religious devotion required</small></div>
+      <div class="coin"><strong>Homeland Security Coin</strong> <span class="ticker">(HSC)</span><br><small>20% goes to Mt. Gox</small></div>
+      <div class="coin"><strong>Scamcoin</strong> <span class="ticker">(SCC)</span><br><small>You send first</small></div>
+      <div class="coin"><strong>Awesome Coin</strong> <span class="ticker">(AC)</span><br><small>Better name = instant success</small></div>
+      <div class="coin"><strong>ShitcoinCoin</strong> <span class="ticker">(SHIT)</span><br><small>Brown is the new color of money</small></div>
+      <div class="coin"><strong>Yeah Coin</strong> <span class="ticker">(YEC)</span><br><small>Infinite monkeys + Shakespeare</small></div>
+    </div>
+
+    <div class="old-post">
+      <strong>Classic Quote:</strong><br>
+      "Brown is the new color of money." — NullOp, 2013
+    </div>
+
+  </div>
+
+  <footer>
+    <p>A nostalgic archive dedicated to NullOp and the wild wild west of 2013 crypto</p>
+    <p style="margin-top:15px;">Still not sorry.</p>
+  </footer>
+
 </body>
 </html>
